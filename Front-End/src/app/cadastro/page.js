@@ -5,17 +5,19 @@ import { useRouter } from 'next/navigation'
 
 export default function Cadastro() {
     const route = useRouter();
-    const [nome, setNome] = useState();
-    const [idade, setIdade] = useState();
-    const [uf, setUF] = useState();
+    const [titulo, setTitulo] = useState();
+    const [dat, setDat] = useState();
+    const [preco, setPreco] = useState();
+    const [desc, setDesc] = useState();
 
     const cadastrar = (e) => {
         e.preventDefault()
         
         const produto = {
-            nome: nome,
-            idade: idade,
-            uf: uf
+            titulo: titulo,
+            dat: dat,
+            preco: preco,
+            desc: desc
         }
         const produtoJson = JSON.stringify(produto);
         fetch("http://localhost:3003/produto", {
@@ -30,22 +32,28 @@ export default function Cadastro() {
             <form  onSubmit={cadastrar}>
                 <input
                     type="text"
-                    placeholder='Nome:'
-                    nome="nome"
-                    onChange={e => setNome(e.target.value)}
+                    placeholder='titulo:'
+                    nome="titulo"
+                    onChange={e => setTitulo(e.target.value)}
                 /><br/>
                 <input
                     type="text"
-                    placeholder='Idade:'
-                    nome="idade"
-                    onChange={e => setIdade(e.target.value)}
+                    placeholder='Data:'
+                    nome="data"
+                    onChange={e => setDat(e.target.value)}
                 /><br/>
                 <input
                     type="text"
-                    placeholder='UF:'
-                    nome="uf"
-                    onChange={e => setUF(e.target.value)}
+                    placeholder='Preco:'
+                    nome="preco"
+                    onChange={e => setPreco(e.target.value)}
                 /><br/>
+                <input
+                    type="text"
+                    placeholder='Descricao:'
+                    nome="descricao"
+                    onChange={e => setDesc(e.target.value)}
+                    /><br/>
                 <button type='submit'>Cadastrar</button>
                 <div>
                     <a href='/'>Voltar</a>
