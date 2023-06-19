@@ -5,52 +5,85 @@ import { useRouter } from 'next/navigation'
 
 export default function Cadastro() {
     const route = useRouter();
-    const [nome, setNome] = useState();
-    const [idade, setIdade] = useState();
-    const [uf, setUF] = useState();
+    const [titulo, setTitulo] = useState();
+    const [dataCadastro, setDataCadastro] = useState();
+    const [preco, setPreco] = useState();
+    const [descricao, setDescricao] = useState();
+    const [imagem, setImagem] = useState();
 
     const cadastrar = (e) => {
         e.preventDefault()
         
-        const pessoa = {
-            nome: nome,
-            idade: idade,
-            uf: uf
+        const prod = {
+            titulo: titulo,
+            dataCadastro: dataCadastro,
+            preco: preco,
+            descricao: descricao,
+            imagem: imagem
         }
-        const pessoaJson = JSON.stringify(pessoa);
-        fetch("http://localhost:3003/pessoa", {
+        const prodJson = JSON.stringify(prod);
+        fetch("http://localhost:3000/prod", {
             method: "POST",
             headers: { "content-Type": "application/json" },
-            body: pessoaJson
+            body: prodJson
         }).then(function(){ route.push("/")}).catch(()=> console.log("Não foi possível cadastrar!"))
     }
 
     return (
         <div className={styles.main}>
-            <form  onSubmit={cadastrar}>
+            
+        <div className={styles.container}>
+            <form className={styles.form} action='' onSubmit={cadastrar}>
+                <h1 className={styles.um}>
+                    Cadastrar
+                </h1>
+
+            <div className={styles.inputsingle}>
+                <label>Informe o titulo:</label>
                 <input
                     type="text"
-                    placeholder='Nome:'
-                    nome="nome"
-                    onChange={e => setNome(e.target.value)}
-                /><br/>
-                <input
-                    type="text"
-                    placeholder='Idade:'
-                    nome="idade"
-                    onChange={e => setIdade(e.target.value)}
-                /><br/>
-                <input
-                    type="text"
-                    placeholder='UF:'
-                    nome="uf"
-                    onChange={e => setUF(e.target.value)}
-                /><br/>
-                <button type='submit'>Cadastrar</button>
-                <div>
-                    <a href='/'>Voltar</a>
+                    nome="titulo"
+                    onChange={e => setTitulo(e.target.value)}
+                />
                 </div>
+
+                <div className={styles.inputsingle}>
+                <label>Informe a data:</label>
+                 <input
+                    type="date"
+                    nome="dataCadastro"
+                    onChange={e => setDataCadastro(e.target.value)}
+                /></div>
+
+                <div className={styles.inputsingle}>
+                <label>Informe o preço:</label>
+                <input
+                    type="number"
+                    nome="preco"
+                    onChange={e => setPreco(e.target.value)}
+                /></div>
+
+                <div className={styles.inputsingle}>
+                <label>Informe a descrição:</label>
+                <input
+                    type="text"
+                    nome="descricao"
+                    onChange={e => setDescricao(e.target.value)}
+                /></div>
+
+                <div className={styles.inputsingle}>
+                <label>Link imagem:</label>
+                <input
+                    type="link"
+                    nome="imagem"
+                    onChange={e => setImagem(e.target.value)}
+                /></div>
+
+
+<div className={styles.btn}><button className={styles.button} type='submit'>CADASTRAR</button></div>
+                    <div className={styles.bt}><a className={styles.butto} href='/'>Voltar</a></div>
             </form>
+        </div>
         </div>
     );
 }
