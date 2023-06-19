@@ -8,7 +8,7 @@ let connect = async function () {
 
     const pool = new Pool({
       connectionString: 'postgres://cgslbvje:d3fOv_0mAJMWXqbcdt4-4p6vws_bF1v7@silly.db.elephantsql.com/cgslbvje'
-    });              //link elephante(banco)sdjfjsgfh
+    });              //link elephante(banco)
 
     global.connection = pool;
     return Promise.resolve(pool);
