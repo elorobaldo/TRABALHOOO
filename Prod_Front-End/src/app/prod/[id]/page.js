@@ -8,7 +8,7 @@ export default async function Prod({ params }) {
 
     const idJson = JSON.stringify(id);
 
-    const req = await fetch("http://localhost:3000/prods", {
+    const req = await fetch("http://localhost:3001/prods", {
         method: "POST",
         cache: "no-cache",
         headers: { 'content-type': 'application/json' },
