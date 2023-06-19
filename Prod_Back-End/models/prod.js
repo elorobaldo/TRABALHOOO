@@ -11,6 +11,7 @@ class Prod {
       throw error;
     }
   }
+  
   static async selectOne(id) {
     try {
       const connect = await db.connect();
